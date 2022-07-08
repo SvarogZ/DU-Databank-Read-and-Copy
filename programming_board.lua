@@ -39,7 +39,7 @@ local data = {}
 local dataKeyStings = {}
 
 for _, databank in ipairs(databanks) do
-	local keyList = databank.databank.getKeyList()
+	local keyList = databank.getKeyList()
 	local databankId = databank.getLocalId()
 	for _, key in ipairs(keyList) do
 		table.insert(dataKeyStings,table.concat({databankId,key,databank.getStringValue(key)},","))
@@ -80,3 +80,12 @@ function transmission()
 	end
 end
 
+local function copyData(databankRead, databankWrite, isClear)
+	local keyList = databankRead.getKeyList()
+	if isClear then databankWrite.clear() end
+	for _, key in ipairs(keyList) do
+		databankWrite.setStringValue(key,getStringValue(key))
+	end
+end
+
+--copyData(databank[1], databank[2], true)
