@@ -2,8 +2,8 @@ local screenWidth, screenHeight = getResolution()
 
 local col_number = 4
 local row_number = 11
-local header = {"#","Databank Id","Key","Value"}
-local tableColumnWidthPattern = {5,20,25,50}
+local header = {"#","Databank","Key","Value"}
+local tableColumnWidthPattern = {5,18,27,50}
 local tableRowHeightPattern = {}
 local textAlignColumnPattern = {1}
 local table_font_name = "FiraMono"
@@ -29,7 +29,7 @@ local navigationButtonWidth = screenWidth / 2.2
 local navigationButtonHeight = screenHeight / 25
 local navigationBorderRadius = screenHeight / 50
 local sortMarkSize = screenHeight/100
-local defaultSelector = 2
+local defaultSelector = 1
 
 local tableLayer = createLayer()
 local controlLayer = createLayer()
@@ -243,11 +243,9 @@ if not control then
 	end
 	
 	local locations = {
-		{screenWidth*0.16, screenHeight*0.07},
-		{screenWidth*0.45, screenHeight*0.07},
-		{screenWidth*0.65, screenHeight*0.07},
-		{screenWidth*0.85, screenHeight*0.07},
-		{screenWidth*0.975, screenHeight*0.07}
+		{screenWidth*0.22, screenHeight*0.07},
+		{screenWidth*0.48, screenHeight*0.07},
+		{screenWidth*0.95, screenHeight*0.07}
 	}
 	control.selectorSort = SelectorClass:new(controlLayer,locations,checkAreaSortSelector,drawSortOn,drawSortOff)
 	dataSorted = false
@@ -311,12 +309,12 @@ function DataClass:new(startPattern,stopPattern)
 			local j = 1
 			privateObj.data[i] = {}
 			for s in line:gmatch(exprCell) do
-				local n = tonumber(s)
-				if n then
-					privateObj.data[i][j] = n
-				else
+				--local n = tonumber(s)
+				--if n then
+					--privateObj.data[i][j] = n
+				--else
 					privateObj.data[i][j] = s
-				end
+				--end
 				j = j + 1
 			end
 			
