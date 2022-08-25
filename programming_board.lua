@@ -6,6 +6,8 @@ local startPattern = "[s]" --export: pattern to indicate the start of the packag
 local stopPattern = "[e]" --export: pattern to indicate the end of the package
 local stringMax = 1024 --export: max string lengh to transmite in one cycle
 
+local databanks = {}
+local screens = {}
 
 local function initiateSlots()
 	for _, slot in pairs(unit) do
